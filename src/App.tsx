@@ -5,16 +5,17 @@ import dict from "./all.json";
 
 function App() {
   const [text, setText] = useState("");
-
+  // why?
+  const dictT = dict as Record<string, string>
   const keys = Object.keys(dict);
 
   const result = keys.filter((i) =>
-    i.toLowerCase().startsWith(text.toLowerCase())
+    i.toLowerCase().startsWith(text.toLowerCase()) ||
+    dictT[i].indexOf(text) >= 0
   );
 
   const disp = result.slice(0, 20).map((i) => {
-    // why?
-    const body = (dict as Record<string, string>)[i];
+    const body = dictT[i];
     return {
       title: i,
       body: body,
@@ -49,7 +50,6 @@ function App() {
           );
         })}
       </div>
-      {/* <textarea value={result}></textarea> */}
     </div>
   );
 }
