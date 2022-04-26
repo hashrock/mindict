@@ -1,45 +1,44 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
+
+import dict from "./all.json";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [text, setText] = useState("");
+
+  const keys = Object.keys(dict);
+
+  const result = keys.filter((i) =>
+    i.toLowerCase().startsWith(text.toLowerCase())
+  );
+
+  const disp = result.slice(0, 20).map((i) => {
+    // why?
+    const body = (dict as Record<string, string>)[i];
+    return {
+      title: i,
+      body: body,
+    };
+  });
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+      <div className="search">
+        <input onChange={(e) => setText(e.target.value)} />
+      </div>
+      <div>
+        {disp.map((i) => {
+          return (
+            <div className="word">
+              <div className="wordTitle">{i.title}</div>
+              <div className="wordBody">{i.body}</div>
+            </div>
+          );
+        })}
+      </div>
+      {/* <textarea value={result}></textarea> */}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
