@@ -28,10 +28,15 @@ function App() {
       </div>
       <div>
         {disp.map((i) => {
+          const escaped = encodeURIComponent(i.title);
           return (
             <div className="word">
               <div className="wordTitle">{i.title}</div>
               <div className="wordBody">{i.body}</div>
+              <div className="action">
+                <a href={"https://eow.alc.co.jp/search?q=" + escaped}>Eijiro</a>
+                <a href={"https://ejje.weblio.jp/content/" + escaped}>weblio</a>
+              </div>
             </div>
           );
         })}
