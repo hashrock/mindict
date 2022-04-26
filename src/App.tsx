@@ -1,20 +1,22 @@
 import { useState } from "react";
+import { useDebounce } from "use-debounce";
 import "./App.css";
 
 import dict from "./all.json";
 
 function App() {
   const [text, setText] = useState("");
+  const [debouncedText] = useDebounce(text, 100);
   // why?
   const dictT = dict as Record<string, string>
   const keys = Object.keys(dict);
 
   const result = keys.filter((i) =>
-    i.toLowerCase().startsWith(text.toLowerCase()) ||
-    dictT[i].indexOf(text) >= 0
+    i.toLowerCase().startsWith(debouncedText.toLowerCase()) ||
+    dictT[i].indexOf(debouncedText) >= 0
   );
 
-  const disp = result.slice(0, 20).map((i) => {
+  const disp = result.slice(0, 50).map((i) => {
     const body = dictT[i];
     return {
       title: i,
@@ -22,7 +24,7 @@ function App() {
     };
   });
 
-  const inputEscaped = encodeURIComponent(text) 
+  const inputEscaped = encodeURIComponent(debouncedText) 
   return (
     <div className="App">
       <div className="search">
