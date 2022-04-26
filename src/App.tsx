@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="App">
       <div className="search">
-        <input onChange={(e) => setText(e.target.value)} />
+        <input autoFocus onChange={(e) => setText(e.target.value)} />
       </div>
       <div className="queryAction">
         Search in <a href={"https://eow.alc.co.jp/search?q=" + inputEscaped}>Eijiro</a>
