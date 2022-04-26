@@ -13,13 +13,13 @@ input {
   flex: 1;
 }
 
-.word{
+.word {
   margin-top: 0.5em;
 }
-.wordTitle{
+.wordTitle {
   font-weight: 700;
 }
-.wordBody{
+.wordBody {
   color: #666;
   white-space: pre-wrap;
 }
@@ -28,14 +28,29 @@ input {
   opacity: 0;
 }
 
-.word:hover .action{
+.word:hover .action {
   opacity: 1;
 }
 
-.action a{
+.action a {
   display: inline-block;
   margin-right: 0.5em;
   text-decoration: none;
   color: #666;
   font-size: 0.8em;
+}
+
+.action a:hover {
+  text-decoration: underline;
+}
+.queryAction {
+  color: #666;
+  font-size: 0.8em;
+  text-align: right;
+}
+
+.queryAction a {
+  display: inline-block;
+  margin-right: 0.5em;
+  color: #666;
 }

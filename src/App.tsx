@@ -21,10 +21,17 @@ function App() {
     };
   });
 
+  const inputEscaped = encodeURIComponent(text) 
   return (
     <div className="App">
       <div className="search">
         <input onChange={(e) => setText(e.target.value)} />
+      </div>
+      <div className="queryAction">
+        Search in <a href={"https://eow.alc.co.jp/search?q=" + inputEscaped}>Eijiro</a>
+        <a href={"https://ejje.weblio.jp/content/" + inputEscaped}>weblio</a>
+        <a href={"http://gogengo.me/words/search?word%5Bquery%5D=" + inputEscaped}>Gogengo</a>
+        
       </div>
       <div>
         {disp.map((i) => {
@@ -36,6 +43,7 @@ function App() {
               <div className="action">
                 <a href={"https://eow.alc.co.jp/search?q=" + escaped}>Eijiro</a>
                 <a href={"https://ejje.weblio.jp/content/" + escaped}>weblio</a>
+                <a href={"http://gogengo.me/words/search?word%5Bquery%5D=" + escaped}>Gogengo</a>
               </div>
             </div>
           );
